@@ -37,7 +37,10 @@
 .urls a {
     margin-left: 50px; /* Adjust as needed */
     color: black;
-    .active {
-        color: #004FFF;
-    }
+    
+}
+
+.urls a.active {
+    color: #004FFF;
+    font-weight: 700;
 }

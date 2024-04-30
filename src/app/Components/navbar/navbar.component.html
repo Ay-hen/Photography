@@ -1,0 +1,10 @@
+<div class="navbar">
+    <h1 class="logo">Photography</h1>
+
+    <div class="urls">
+        <a routerLink="/home" class="active" #home>Home</a>
+        <a routerLink="/reservation" (click)="activate(reservation)" #reservation>Reservation</a>
+        <a routerLink="/add-reservation" (click)="activate(addReservation)" #addReservation>Add Reservation</a>
+        <a routerLink="/search" (click)="activate(search)" #search>Search</a>
+    </div>
+</div>

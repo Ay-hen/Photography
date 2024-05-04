@@ -9,12 +9,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  @ViewChild("home") home !: ElementRef;
   
-  activate(e: HTMLAnchorElement) {
-    if(e !== this.home.nativeElement){
-        this.home.nativeElement.classList.remove("active");
-        e.classList.add("active");
-    }
-  }
 }

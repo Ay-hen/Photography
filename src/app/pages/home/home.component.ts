@@ -10,5 +10,5 @@ import { NavbarComponent } from '../../Components/navbar/navbar.component';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
+  Behind: string = "../../../assets/behindGrad.jpg";
 }

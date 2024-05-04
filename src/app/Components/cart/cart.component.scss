@@ -1,0 +1,46 @@
+
+
+.cart {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25rem; /* adjust as needed */
+    height: 20.8rem;
+    padding: 20px;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* optional: add a shadow for a "card" effect */
+}
+
+.image img {
+    display: flex;
+    justify-content: center;
+    width: 20rem;
+    border-radius: 0.7rem;
+}
+
+.details h3, .details p {
+    text-align: center;
+    margin: 5px ; /* add some space above and below the text */
+}
+
+.button button {    
+
+    color: #007bff;
+    background-color: white;
+    border: 5px solid #007bff;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+}
+
+.button button:hover {
+
+    color: white;
+    background-color: #007bff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: ease-in-out 0.3s;
+}

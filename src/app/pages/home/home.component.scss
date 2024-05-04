@@ -1,21 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-* {
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-
-    input{
-        all: unset;
-        
-    }
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #FAFAFA;
+}
 
-.behind {
-    position: absolute;
-    z-index: -10;
-    width: 100vw;
-    height: 80vh;
+.cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 11.8rem;
+}
+
+app-cart {
+    margin-top: 1rem;
+    flex: 0 0 50%; /* This makes each cart take up 50% of the container's width */
+    max-width: 50%; /* This prevents the cart from growing larger than 50% of the container's width */
+    box-sizing: border-box; /* This includes padding and border in the element's total width and height */
+}
+
+.bottom {
+    margin-top: 5rem;
+    margin-bottom: 2.5rem;
 }

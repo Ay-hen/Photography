@@ -6,28 +6,34 @@
             <label for="name">Full Name</label>
             <input type="text" name="fullname" #name>
         </div>
+        <div class="phone">
+            <label for="name">Phone Number</label>
+            <input type="text" name="phone" #phone placeholder="+212">
+        </div>
         <div class="address">
             <label for="address">Address</label>
             <input type="text" name="address" #address>
         </div>
         <div class="hour">
             <label for="hour">Hour</label>
-            <input type="text" name="hour" #hour>
+            <input type="text" name="hour" #hour placeholder="mm : hh">
         </div>
         <div class="date">
             <label for="date">Date</label>
-            <input type="text" name="date" #date>
+            <input type="date" name="date" #date>
         </div>
         <div class="type">
-            <label >Type</label>
+            <label >Type Of Photography</label>
             <select name="type" id="">
-                <option value=""></option>
+                <option value="" disabled selected>Select an option</option>
                 <option value="Marriage">Marriage</option>
                 <option value="Montage">Montage</option>
                 <option value="Party">Party</option>
                 <option value="Birthday">Birthday</option>
             </select>
         </div>
-
+        <div class="btn">
+            <button>Save</button>
+        </div>
     </form>
 </div>

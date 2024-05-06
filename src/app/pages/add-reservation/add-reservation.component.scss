@@ -5,7 +5,84 @@
     
 }
 
-body{
-    font-family: 'Poppins', sans-serif;
-    background-color: #FAFAFA;
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    width: 100%;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"], select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 3.5rem;
+    font-weight: 600;
+    width: 15rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn button:hover {
+    background-color: #0056b3;
+}
+
+.date {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.date label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.date input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+select {
+    font-weight: 500;
+    option{
+        font-weight: 500;
+    }
 }

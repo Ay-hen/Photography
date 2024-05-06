@@ -1,0 +1,68 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20rem;
+    height: 18rem;
+    border-radius: 1rem;
+    box-shadow: 0 3px 15px 2px rgba(0, 0, 0, 0.1);
+    
+}
+
+.username, .type, .date,.status, .delete {
+    text-align: center;
+    color: black;
+}
+
+.username h2{
+    font-size: 1.3rem;
+}
+
+.type h1{
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.status{
+    
+    h1.accepted{
+        color: green;
+        font-size: 1.2rem;
+    }
+    h1.rejected{
+        color: red;
+        font-size: 1.2rem;
+    }
+
+    h1.pending{
+        color: gray;
+        font-size: 1.2rem;
+    }
+}
+
+.date h2{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+
+button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #f44336; /* Red */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e60000; /* Darker red */
+    color: white;
+}

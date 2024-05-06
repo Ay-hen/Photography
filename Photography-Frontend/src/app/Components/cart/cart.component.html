@@ -1,0 +1,12 @@
+<div class="cart">
+    <div class="image">
+        <img src="{{cart.image}}" alt="{{cart.title}}">
+    </div>
+    <div class="details">
+        <h3>{{cart.title}}</h3>
+        <p>{{cart.description}}</p>
+    </div>
+    <div class="button">
+        <button (click)="seeMore(cart.id)">See More</button>
+    </div>
+</div>

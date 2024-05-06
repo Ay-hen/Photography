@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<div class="coloring">
+    <div class="center">
+        <div class="container">
+            @for( reservation of reservations; track reservation.id){
+                <app-reservation-cart [reservation] = "reservation" ></app-reservation-cart>
+            }
+            
+            @empty {
+                <div class="text">
+                    <h1>
+                        There is no Reservation yet, Please add new reservation
+                    </h1>
+                </div>
+                
+            }
+        </div>
+    </div>
+    <div class="btn">
+        <button class="btn-add" routerLink="/add-reservation">Add Reservation</button>
+    </div>
+
+</div>

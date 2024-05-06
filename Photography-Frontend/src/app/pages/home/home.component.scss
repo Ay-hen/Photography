@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+}
+
+app-cart {
+    margin-top: 1rem;
+    flex: 0 0 50%; /* This makes each cart take up 50% of the container's width */
+    max-width: 50%; /* This prevents the cart from growing larger than 50% of the container's width */
+    box-sizing: border-box; /* This includes padding and border in the element's total width and height */
+}
+
+.bottom {
+    margin-top: 5rem;
+    margin-bottom: 2.5rem;
+}

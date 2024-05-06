@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="username">
+        <h2>{{reservation.username}}</h2>
+    </div>
+    <div class="type">
+        <h1>{{reservation.type}}</h1>
+    </div>
+    <div class="status">
+        @if(reservation.status === "Rejected"){
+            <h1 class="rejected">{{reservation.status}}</h1>
+        }@else if(reservation.status === "Accepted"){
+            <h1 class="accepted">{{reservation.status}}</h1>
+        }@else{
+            <h1 class="pending">{{reservation.status}}</h1>
+        } 
+    </div>
+    <div class="date">
+        <h2>{{reservation.date}}</h2>
+    </div>
+    <div class="delete">
+        <button (click)="delete()">Delete</button>
+    </div>
+</div>

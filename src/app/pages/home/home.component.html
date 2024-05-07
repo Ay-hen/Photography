@@ -2,10 +2,10 @@
 
 <div class="container">
     <div class="cart-container">
-        <app-cart></app-cart>
-        <app-cart></app-cart>
+        @for(cart of carts; track cart.id){
+            <app-cart [cart] = "cart"></app-cart>
+        }
         
-        <app-cart></app-cart>
-        <app-cart></app-cart>
+        
     </div>
 </div>

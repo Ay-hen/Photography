@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, RouterLink ,ActivatedRoute} from '@angular/router';
 import { Cart } from './cart';
 
@@ -11,9 +11,7 @@ import { Cart } from './cart';
 })
 export class CartComponent {
 
-  
-
-  cart : Cart;
+  @Input() cart : Cart;
   constructor(private router: Router, private route: ActivatedRoute) {
     this.cart = {
       id:1,

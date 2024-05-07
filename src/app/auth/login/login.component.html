@@ -1,0 +1,29 @@
+<section class="landing-page">
+    <img [src]="Behind" alt="bck" class="behind">
+    <div class="split">
+        <img [src]="Photos" alt="" class="hero-right">
+
+        <div class="hero-left">
+            <h1 class="logo">Photography</h1>
+            <h1 class="form-title">
+                Log in to your account
+            </h1>
+            <p class="form-subtitle">
+                Please enter the required informations
+            </p>
+            <form  class="auth-form" [formGroup]="userForm">
+                <input type="text" class="input-area" placeholder="Username" formControlName="username" required/>
+                <div class="input-area">
+                    <input [type]="'password'"  class="pw" placeholder="Password" formControlName="password"/>
+                    
+                </div>
+            
+                <button class="primary-btn" type="submit" (click)="onSubmit()" >Log in </button>
+
+                <p class="text">You don't have an account ? <a routerLink="/signup" class="primary-text"> Create One</a></p>
+                <p class="text">Are you a photographer ? <a routerLink="/signup-photographer" class="primary-text">Sign in</a></p>
+            </form>
+            
+        </div>
+    </div>
+</section>

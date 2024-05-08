@@ -1,0 +1,34 @@
+<app-navbar-photographer></app-navbar-photographer>
+<div class="container">
+    <div class="container-right">
+        <form class="info" [formGroup]="userForm">
+            <div class="name">
+                <label >Full Name</label>
+                <input type="text"/>
+            </div>
+            <div class="phone">
+                <label >Phone Number</label>
+                <input type="text" />
+            </div>
+            <div class="city">
+                <label >City</label>
+                <input type="text" />
+            </div>
+            <div class="email">
+                <label >Email</label>
+                <input type="text" />
+            </div>
+            <div class="availability">
+                <label >Availability</label>
+                <select name="availability" >
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="available">Available</option>
+                    <option value="not-available">Not Available</option>
+                </select>
+            </div>
+            <div class="btn">
+                <button (click)="onSubmit()">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

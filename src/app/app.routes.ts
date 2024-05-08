@@ -7,8 +7,9 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
 import { AddReservationComponent } from './pages/add-reservation/add-reservation.component';
 import { SearchComponent } from './pages/search/search.component';
 import { CartComponent } from './Components/cart/cart.component';
-import { ReservationCartComponent } from './pages/reservation/reservation-cart/reservation-cart.component';
 import { SignupComponentPhotographer } from './auth/signup-photography/signup-photographer.component';
+import { PhotographerDashboardComponent } from './photographer interface/profile/photographer-dashboard.component';
+import { PhotographerReservationComponent } from './photographer interface/reservation/photographer-reservation.component';
 
 export const routes: Routes = [
     {
@@ -47,7 +48,11 @@ export const routes: Routes = [
         component: CartComponent
     },
     {
-        path : "test",
-        component: ReservationCartComponent
+        path : "profile",
+        component: PhotographerDashboardComponent
+    },
+    {
+        path : "reservation-photographer",
+        component: PhotographerReservationComponent
     }
 ];

@@ -12,6 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class PhotographerDashboardComponent {
   userForm : FormGroup;
+  editAll = false;
 
   constructor(){
     this.userForm = new FormGroup({

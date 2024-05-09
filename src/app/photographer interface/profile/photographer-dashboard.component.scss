@@ -1,6 +1,7 @@
 .container {
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 
@@ -9,6 +10,7 @@
     flex-grow: 1;
     padding: 20px;
     justify-content: center;
+    margin-top: 4rem;
 }
 
 .info {
@@ -51,8 +53,34 @@
     height: 3rem;
     font-weight: 600;
     margin-top: 2rem;
+    transition: 0.4s ease-in-out;
 }
 
 .btn button:hover {
     background-color: #0056b3;
+    transition: 0.4s ease-in-out;
+}
+
+.edit-btn {
+    position: absolute; /* Add this line */
+    top: 0; /* Add this line */
+    height: 3rem;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.edit-btn:hover {
+    background-color: #45a049;
+    transition: 0.4s ease-in-out;
 }

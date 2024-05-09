@@ -58,8 +58,10 @@
     border-radius: 15px;
     font-weight: 600;
     margin-left: 50px;
+    transition: 0.35s ease-in-out;
 }
 
 .logout button:hover {
-    background-color: #CC2323; // This will change the background color when the button is hovered over
+    background-color: #f11313; 
+    transition: 0.35s ease-in-out;
 }

@@ -10,6 +10,8 @@ import { CartComponent } from './Components/cart/cart.component';
 import { SignupComponentPhotographer } from './auth/signup-photography/signup-photographer.component';
 import { PhotographerDashboardComponent } from './photographer interface/profile/photographer-dashboard.component';
 import { PhotographerReservationComponent } from './photographer interface/reservation/photographer-reservation.component';
+import { AdminReservationComponent } from './admin interface/admin-reservation/admin-reservation.component';
+import { AdminAccountsComponent } from './admin interface/admin-accounts/admin-accounts.component';
 
 export const routes: Routes = [
     {
@@ -54,5 +56,87 @@ export const routes: Routes = [
     {
         path : "reservation-photographer",
         component: PhotographerReservationComponent
+    },
+    {
+        path : "admin/reservations",
+        component : AdminReservationComponent
+    }
+    ,{
+        path : "admin/accounts",
+        component : AdminAccountsComponent
     }
 ];
+
+/* export const routes: Routes = [
+    {
+        path : '', redirectTo: 'login', pathMatch: 'full'
+    },
+    {
+        path : 'login', 
+        component: LoginComponent
+    },
+    {
+        path : 'signup', 
+        component: SignupComponent
+    },
+    {
+        path : 'signup-photographer', 
+        component: SignupComponentPhotographer
+    },
+    {
+        path : 'home', 
+        component: HomeComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'client' }
+    },
+    {
+        path : 'cart-info/:id', 
+        component: HomeComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'client' }
+    },
+    {
+        path : 'reservation', 
+        component: HomeComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'client' }
+    },
+    {
+        path : 'add-reservation', 
+        component: HomeComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'client' }
+    },
+    {
+        path : 'search', 
+        component: HomeComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'client' }
+    },
+    
+    {
+        path : "admin/reservations",
+        component : AdminReservationComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'admin' }
+    },
+    {
+        path : "admin/accounts",
+        component : AdminAccountsComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'admin' }
+    },
+    {
+        path : "profile",
+        component: PhotographerDashboardComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'photographer' }
+    },
+    {
+        path : "reservation-photographer",
+        component: PhotographerReservationComponent,
+        canActivate: [RoleGuard],
+        data: { role: 'photographer' }
+    }
+    
+]; */

@@ -1,13 +1,14 @@
-<app-navbar-photographer></app-navbar-photographer>
+<app-navbar-ad></app-navbar-ad>
 <div class="container">
     <div class="cart-container ">
         
         <div class="cart">
             <span class="name">client.name</span>
+            <span class="name">reservation.photo</span>
             <span class="type">reservation.type</span>
             <span class="date">reservation.date</span>
             <span class="phone">reservation.phone</span>
-            <button class="accept">Accept</button> <button class="reject">Reject</button>
+            <button class="accept" (click) = "onAccept()">Accept</button> <button class="reject" (click) = 'onReject()'>Reject</button>
         </div>
         
     </div>

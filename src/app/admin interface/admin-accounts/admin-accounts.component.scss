@@ -1,0 +1,119 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    margin-bottom: 3rem;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+}
+
+.sidebar {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.carts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.cart-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 16rem;
+    margin-left: 1.2rem;
+}
+
+.cart-info span {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.cart-info button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 6rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-info .accept {
+    background-color: #4CAF50;
+    color: #fff;
+    margin-right: 15px;
+}
+
+.cart-info .reject {
+    background-color: #F44336;
+    color: #fff;
+    margin-left: 15px;
+}
+
+.cart-info .accept:hover {
+    background-color: #45a049;
+}
+
+.cart-info .reject:hover {
+    background-color: #f44336;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; // Optional: Adds space between the buttons
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+    .carts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .cart-container {
+        width: 90%;
+        
+    }
+}
+
+@media (max-width: 600px) {
+    .cart-container {
+        width: 90%;
+        
+    }
+
+    .carts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .cart-info {
+        
+        margin-left: 3rem;
+    }
+
+    .cart-info button {
+        width: 100%;
+    }
+}

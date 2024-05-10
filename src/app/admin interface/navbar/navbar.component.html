@@ -1,0 +1,11 @@
+<div class="navbar">
+    <h1 class="logo">Photography</h1>
+
+    <div class="urls">
+        <a routerLink="/admin/accounts" routerLinkActive="active" #home>Accounts</a>
+        <a routerLink="/admin/reservations" routerLinkActive="active" #reservation>Reservations</a>
+        <div class="logout">
+            <button (click)="logout()">Logout</button>
+        </div>
+    </div>
+</div>

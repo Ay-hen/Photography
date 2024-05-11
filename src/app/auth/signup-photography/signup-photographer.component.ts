@@ -20,7 +20,7 @@ export class SignupComponentPhotographer {
 
   constructor(){
     this.userForm = new FormGroup({
-      fullname: new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(25)]),
+      name: new FormControl("",[Validators.required,Validators.minLength(8),Validators.maxLength(25)]),
       username: new FormControl("",[Validators.required,Validators.minLength(4)]),
       email: new FormControl("",[Validators.required,Validators.email]),
       phone: new FormControl("",[Validators.required,Validators.minLength(10),Validators.maxLength(10)]),

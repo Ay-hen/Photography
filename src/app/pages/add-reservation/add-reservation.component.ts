@@ -1,37 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavbarComponent } from '../../Components/navbar/navbar.component';
 import { RouterLink } from '@angular/router';
-import {provideNativeDateAdapter} from '@angular/material/core';
+
 
 import { User } from '../../app.component.models';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReservationService } from './reservation.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-reservation',
   standalone: true,
-  imports: [NavbarComponent,RouterLink,ReactiveFormsModule],
+  imports: [NavbarComponent,RouterLink,ReactiveFormsModule,HttpClientModule],
   templateUrl: './add-reservation.component.html',
-  providers: [provideNativeDateAdapter()],
+  providers: [],
   styleUrl: './add-reservation.component.scss'
 })
 export class AddReservationComponent {
   photographers !:User[]; 
 
-  userForm : FormGroup;
+  httpClient = inject(HttpClient);
+  data =[];
 
-  constructor(){
-    this.userForm = new FormGroup({
-      name : new FormControl("",[Validators.required]),
-      phone : new FormControl("",[Validators.required]),
-      city : new FormControl("",[Validators.required]),
-      hour : new FormControl("",[Validators.required]),
-      date : new FormControl("",[Validators.required]),
-      type : new FormControl("",[Validators.required]),
-      photographer : new FormControl("",[Validators.required])
-    });
-  }
+
+
+  userForm : FormGroup = new FormGroup({
+    name : new FormControl("",[Validators.required]),
+    phone : new FormControl("",[Validators.required]),
+    city : new FormControl("",[Validators.required]),
+    hour : new FormControl("",[Validators.required]),
+    date : new FormControl("",[Validators.required]),
+    type : new FormControl("",[Validators.required]),
+    photographer : new FormControl("",[Validators.required])
+  });;
+
+
+  
 
   onSubmit() {
     
   }
+
+
+  onBlurMethod(event: Event) {
+    const city = (event.target as HTMLInputElement).value;
+
+    this.httpClient.get<User[]>(`http://localhost:8080/user/city/${city}`)
+    .subscribe(photographers => {
+      this.photographers = photographers;
+      console.log('Photographers:', this.photographers);
+    },
+    error => {
+      console.error('Error fetching photographers:', error);
+      this.photographers = [];
+    });
+  }
+
 }

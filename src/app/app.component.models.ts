@@ -18,7 +18,7 @@ export class Reservation {
 
 export interface User{
     username    : string;
-    fullname    : string;
+    name        : string;
     email       : string;
     password    : string;
     role        : string;

@@ -5,7 +5,6 @@ import { RouterLink } from '@angular/router';
 
 import { User } from '../../app.component.models';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ReservationService } from './reservation.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({

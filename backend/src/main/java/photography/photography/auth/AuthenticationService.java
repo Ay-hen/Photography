@@ -1,0 +1,153 @@
+package photography.photography.auth;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import lombok.RequiredArgsConstructor;
+import photography.photography.model.Token;
+import photography.photography.model.User;
+import photography.photography.respository.TokenRepo;
+import photography.photography.respository.UserRepo;
+import photography.photography.service.JwtService;
+
+@Service
+@RequiredArgsConstructor
+public class AuthenticationService {
+    @Autowired
+    private TokenRepo tokenRepo;
+
+    @Autowired
+    private UserRepo repo;
+
+    @Autowired 
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+
+    public ResponseEntity<?> register(RegisterRequest request) {
+
+        if (repo.existsByUsername(request.getUsername())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Username already used");
+        }
+    
+        // Check if email is already taken
+        if (repo.existsByEmail(request.getEmail())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Email already used");
+        }
+
+        if("photographer".equals(request.getRole())){
+            
+            User user = User.builder()
+                    .name(request.getName())
+                    .username(request.getUsername())
+                    .phone(request.getPhone())
+                    .email(request.getEmail())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .availability("Available")
+                    .role(request.getRole())
+                    .city(request.getCity())
+                    .build();
+                var jwtToken = jwtService.generateToken(user);
+
+        Token tk = Token.builder()
+            .token(jwtToken)
+            .expired(false)
+            .build();
+
+        user.setToken(tk);
+
+        repo.save(user);
+        tokenRepo.save(tk);
+
+        return ResponseEntity.ok(AuthenticationResponse.builder()
+            .token(jwtToken)
+            .role(user.getRole())
+            .build());
+        } else {
+
+            var user = User.builder()
+                .name(request.getName())
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                
+                .role(request.getRole())
+                .build();
+
+            var jwtToken = jwtService.generateToken(user);
+
+            Token tk = Token.builder()
+                .token(jwtToken)
+                .expired(false)
+                .build();
+
+            user.setToken(tk);
+
+            repo.save(user);
+            tokenRepo.save(tk);
+
+            return ResponseEntity.ok(AuthenticationResponse.builder()
+                .token(jwtToken)
+                .role(user.getRole())
+                .build());
+        }
+        
+    }
+
+    /* ******************************* Login ******************************* */
+
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        var user = repo.findByUsername(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    
+        var jwtToken = jwtService.generateToken(user);
+    
+        Token tk = Token.builder()
+                .token(jwtToken)
+                .expired(false)
+                .build();
+    
+        user.setToken(tk);
+    
+        tokenRepo.save(tk);
+    
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .role(user.getRole())
+                .build();
+        
+    }
+
+    /* ******************************* Logout ******************************* */
+    public ResponseEntity<?> logout(String username) {
+        
+            var user = repo.findByUsername(username).orElseThrow();
+            // Remove the token from the repository
+            Token token = user.getToken();
+            if (token != null) {
+                tokenRepo.delete(token);
+            }
+
+            if("photographer".equals(user.getRole())){
+                user.setAvailability("Not Available");
+            }
+        
+            // Set user's token to null
+            user.setToken(null);
+        
+
+        return ResponseEntity.ok("Logged out successfully");
+    }
+
+}

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { NavbarComponent } from '../../Components/navbar/navbar.component';
 import { CartComponent } from '../../Components/cart/cart.component';
-import { Cart} from "../../app.component.models"
+import { Cart} from "../../app.component.models";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,10 @@ import { Cart} from "../../app.component.models"
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+
   Behind: string = "../../../assets/behindGrad.jpg";
+
+  constructor(private authService: AuthService) { }
 
   carts: Cart[] = [
     {
@@ -40,4 +44,5 @@ export class HomeComponent {
       description: 'Price : 60DH/hour'
     }
   ];
+
 }

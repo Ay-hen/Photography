@@ -21,8 +21,8 @@ export class CartComponent {
     }
   }
 
-  seeMore(id: number) {
-    this.router.navigate(['/cart-info', id]);
+  seeMore() {
+    this.router.navigate(['/add-reservation']);
   }
 
   ngOnInit() {

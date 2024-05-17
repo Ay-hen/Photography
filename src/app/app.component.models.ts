@@ -24,3 +24,12 @@ export interface User{
     role        : string;
     phone       : string;
 }
+
+
+
+export interface Response{
+    token       : string;
+    role        : string;
+}
+
+

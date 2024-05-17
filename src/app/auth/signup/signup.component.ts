@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { User } from '../../app.component.models';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -15,9 +16,11 @@ export class SignupComponent {
   Behind: string = "../../../assets/behindGrad.jpg";
   Photos: string = "../../../assets/photoPics.png";
 
-  user : User = {} as User;
+  authService = inject(AuthService);
+  router = inject(Router);
 
   userForm : FormGroup;
+  error: boolean = false;
 
   constructor(){
     this.userForm = new FormGroup({
@@ -28,10 +31,23 @@ export class SignupComponent {
     });
   }
 
-  onSubmit(){
-    console.log(this.userForm);
-    this.user = this.userForm.value;
-    this.user.role = "client";
-    console.log(this.user);
+  onSubmit() {
+  if (this.userForm.invalid) {
+    return;
   }
+
+  const { name, username, email, password } = this.userForm.value;
+
+  this.authService.registerUser(name, username, email, password).subscribe(
+    (response) => {
+      console.log(response);
+      
+    },
+    (error) => {
+      this.error = true;
+    }
+  );
+}
+
+
 }

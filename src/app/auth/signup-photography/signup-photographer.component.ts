@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User } from '../../app.component.models'
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup-photographer',
@@ -14,7 +15,10 @@ export class SignupComponentPhotographer {
   Behind: string = "../../../assets/behindGrad.jpg";
   Photos: string = "../../../assets/photoPics.png";
 
-  user : User = {} as User;
+  authService = inject(AuthService);
+  router = inject(Router);
+
+  error: boolean = false;
 
   userForm : FormGroup;
 
@@ -29,9 +33,21 @@ export class SignupComponentPhotographer {
     });
   }
 
-  onSubmit(){
-    this.user = this.userForm.value;
-    this.user.role = "photographer";
-    console.log(this.user);
+  onSubmit() {
+    if (this.userForm.invalid) {
+      return;
+    }
+  
+    const { name, username, email, city, phone, password  } = this.userForm.value;
+  
+    this.authService.registerPhotographer(name, username, email, city, phone, password).subscribe(
+      (response) => {
+        console.log(response);
+        this.router.navigate(['/profile']);
+      },
+      (error) => {
+        this.error =true;
+      }
+    );
   }
 }

@@ -41,9 +41,9 @@
                 <option [value]="photographer.name">{{photographer.name}}</option>
             }@empty {
                 @if(city.value==""){
-                    <option value="empty">Write your city's name</option>
+                    <option value="empty" disabled>Write your city's name</option>
                 }@else {
-                    <option value="empty">There is no photographer in your city</option>
+                    <option value="empty" >There is no photographer in your city</option>
                 }
             }
 
@@ -51,7 +51,7 @@
         </div>
         
         <div class="btn">
-            <button (click)="onSubmit()">Save</button>
+            <button [disabled]="userForm.invalid || photographers.length === 0" (click)="onSubmit()">Save</button>
         </div>
     </form>
 </div>

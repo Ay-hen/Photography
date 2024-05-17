@@ -11,6 +11,11 @@
             <p class="form-subtitle">
                 Please enter the required informations
             </p>
+            <div class="error" [class.hidden]="!error">
+                @if(error){
+                    <span>Username or Email is already used</span>
+                }
+            </div>
             <form  class="auth-form" [formGroup]="userForm">
                 <input type="text" class="input-area" placeholder="Full Name"  formControlName="name" />
                 <input type="text" class="input-area" placeholder="Username" formControlName="username" />
@@ -22,7 +27,7 @@
                     
                 </div>
             
-                <button class="primary-btn" type="submit" (click)="onSubmit()" >Sign up</button>
+                <button class="primary-btn" type="submit" (click)="onSubmit()" [disabled]="!userForm.valid" >Sign up</button>
 
                 <p class="text">You already have an account? <a routerLink="/login" class="primary-text">Sign in</a></p>
                 

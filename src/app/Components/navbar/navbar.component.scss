@@ -17,10 +17,11 @@
     align-items: center;
     justify-content: space-between;
     height: 80px;
+
 }
 
 .logo {
-    font-size: 33px;
+    font-size: 30px;
     font-weight: 800;
     color: #004FFF;
     margin-left: 50px;
@@ -32,6 +33,7 @@
     font-size: 1.27rem;
     font-weight: 600;
     margin-right: 50px;
+    align-items: center;
 }
 
 .urls a {
@@ -43,4 +45,23 @@
 .urls a.active {
     color: #004FFF;
 
+}
+
+.logout button {
+    padding: 10px;
+    background-color: #FF2B2B;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 6rem;
+    height: 3rem;
+    border-radius: 15px;
+    font-weight: 600;
+    margin-left: 50px;
+    transition: 0.35s ease-in-out;
+}
+
+.logout button:hover {
+    background-color: #f11313; 
+    transition: 0.35s ease-in-out;
 }

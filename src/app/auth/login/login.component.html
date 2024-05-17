@@ -11,14 +11,19 @@
             <p class="form-subtitle">
                 Please enter the required informations
             </p>
+            <div class="error" [class.hidden]="!error">
+                @if(error){
+                    <span>Username or Password is not correct</span>
+                }
+            </div>
             <form  class="auth-form" [formGroup]="userForm">
                 <input type="text" class="input-area" placeholder="Username" formControlName="username" required/>
                 <div class="input-area">
-                    <input [type]="'password'"  class="pw" placeholder="Password" formControlName="password"/>
+                    <input [type]="'password'"  class="pw" placeholder="Password" formControlName="password" required/>
                     
                 </div>
             
-                <button class="primary-btn" type="submit" (click)="onSubmit()" >Log in </button>
+                <button class="primary-btn" type="submit" (click)="onSubmit()" [disabled]="!userForm.valid" >Log in </button>
 
                 <p class="text">You don't have an account ? <a routerLink="/signup" class="primary-text"> Create One</a></p>
                 <p class="text">Are you a photographer ? <a routerLink="/signup-photographer" class="primary-text">Sign in</a></p>

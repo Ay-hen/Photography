@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink,RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar-photographer',
@@ -10,5 +11,10 @@ import { RouterLink,RouterLinkActive } from '@angular/router';
 })
 export class NavbarPhotographerComponent {
 
-  logout(){}
+  authService = inject(AuthService);
+
+  logout(){
+    
+    this.authService.logout();
+  }
 }

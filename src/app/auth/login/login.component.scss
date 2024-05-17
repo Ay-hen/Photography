@@ -52,7 +52,7 @@
             }
             .form-subtitle{
                 font-size: 1.1rem;
-                margin-bottom: 1.5em;
+                margin-bottom: 1.1em;
             }
             .input-container{
                 width: 40vw;
@@ -121,4 +121,27 @@
     font-weight: 700;
     cursor: pointer;
 
+}
+
+
+.error {
+    color: red;
+    font-weight: 600;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+
+    &.hidden {
+        display: none;
+    }
+}
+
+button:disabled {
+    background-color: #cccccc;
+    color: #000000;
+}
+
+button:disabled:hover{
+    background-color: #cccccc;
+    color: black;
 }

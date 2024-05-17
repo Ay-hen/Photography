@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NavbarComponent } from '../../Components/navbar/navbar.component';
 import { RouterLink } from '@angular/router';
 
@@ -15,12 +15,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   providers: [],
   styleUrl: './add-reservation.component.scss'
 })
-export class AddReservationComponent {
+export class AddReservationComponent  {
   photographers !:User[]; 
 
   httpClient = inject(HttpClient);
   data =[];
-
 
 
   userForm : FormGroup = new FormGroup({
@@ -34,10 +33,9 @@ export class AddReservationComponent {
   });;
 
 
-  
 
   onSubmit() {
-    
+    console.log("work");
   }
 
 
@@ -53,6 +51,8 @@ export class AddReservationComponent {
       console.error('Error fetching photographers:', error);
       this.photographers = [];
     });
+
   }
+
 
 }

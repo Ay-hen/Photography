@@ -86,3 +86,9 @@ select {
         font-weight: 500;
     }
 }
+
+.btn button:disabled {
+    background-color: #cccccc;
+    color: #888888;
+    cursor: pointer;
+}

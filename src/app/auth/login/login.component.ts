@@ -36,14 +36,10 @@ export class LoginComponent implements OnInit{
       
       this.authService.login(this.userForm.value.username,this.userForm.value.password).subscribe(
         (response) => {
-          console.log(response);
           
         },
         (error) => {
-          console.log(this.userForm.value.username);
-          console.log(error);
           this.error = true;
-          
         }
       );
     }

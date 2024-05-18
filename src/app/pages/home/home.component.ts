@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import {  RouterLink, RouterLinkActive } from '@angular/router';
 import { NavbarComponent } from '../../Components/navbar/navbar.component';
 import { CartComponent } from '../../Components/cart/cart.component';
 import { Cart} from "../../app.component.models";
@@ -12,11 +12,15 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   Behind: string = "../../../assets/behindGrad.jpg";
 
   constructor(private authService: AuthService) { }
+
+  ngOnInit(): void {
+    console.log(this.authService.getUsernameFromToken());
+  }
 
   carts: Cart[] = [
     {
@@ -44,5 +48,7 @@ export class HomeComponent {
       description: 'Price : 60DH/hour'
     }
   ];
+
+  
 
 }

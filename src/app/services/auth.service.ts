@@ -2,24 +2,25 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, Observable, catchError,filter,map,tap, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavigationEnd, Router } from '@angular/router';
+import  {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
+
   private previousUrl: string = '';
   private currentUrl: string;
 
   private router = inject(Router);
-  private loggedUser?: string;
-  private roleUser!: string;
 
   private usernameSource = new BehaviorSubject<string>('');
   currentUsername = this.usernameSource.asObservable();
 
-  private baseUrl = 'http://localhost:8080/user/auth/'; // Assuming API base URL
+  private baseUrl = 'http://localhost:8080/user/auth/'; 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  private userRoleSubject = new BehaviorSubject<string | null>(null); // Track user role
+  private userRoleSubject = new BehaviorSubject<string | null>(null); 
 
   constructor(private http: HttpClient) {
     this.currentUrl = this.router.url;
@@ -30,6 +31,8 @@ export class AuthService {
       this.currentUrl = event.urlAfterRedirects;
     });
   }
+
+  /* ************************************************************************************************** */
 
   login(username: string, password: string): Observable<any> {
     const url = `${this.baseUrl}login`;
@@ -47,7 +50,6 @@ export class AuthService {
           localStorage.setItem('role', role);
           this.isAuthenticatedSubject.next(true);
           this.userRoleSubject.next(role);
-          this.roleUser = role;
           console.log(`the ROLE is ${role}`)
           // Redirect based on role (optional)
           if (role === "client") {
@@ -67,6 +69,8 @@ export class AuthService {
       catchError(error => this.handleError(error))
     );
   }
+
+  /* ************************************************************************************************** */
 
   registerUser(name: string, username: string, email: string, password: string): Observable<any> {
     const url = 'http://localhost:8080/user/auth/register';
@@ -100,6 +104,9 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
+
+  /* ************************************************************************************************** */
+
   registerPhotographer(name: string, username: string, email: string, city:string, phone:string,password: string): Observable<any> {
     const url = 'http://localhost:8080/user/auth/register';
     const user = {
@@ -136,7 +143,8 @@ export class AuthService {
     );
   }
 
-  
+  /* ************************************************************************************************** */
+
   private handleError(error: any) {
     let errorMessage: string;
     if (error.error instanceof ErrorEvent) {
@@ -161,12 +169,14 @@ export class AuthService {
     return localStorage.getItem('role') || '';
   }
 
-  setRole(role : string){
-    this.roleUser = role;
-  }
-
-
+  /* ************************************************************************************************** */
   logout(){
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    const username = this.getUsernameFromToken();
+    this.http.post(`http://localhost:8080/user/auth/logout`,username,httpOptions);
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this.isAuthenticatedSubject.next(false);
@@ -180,5 +190,15 @@ export class AuthService {
 
   setRoute(route: string) {
     this.previousUrl = route;
+  }
+
+  getUsernameFromToken(): any {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return '';
+    }
+  
+    const decodedToken = jwtDecode(token);
+    return decodedToken.sub;
   }
 }

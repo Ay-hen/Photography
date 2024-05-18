@@ -8,4 +8,5 @@ import photography.photography.model.Token;
 
 public interface TokenRepo  extends MongoRepository<Token,String>{
     public Optional<Token> findById(String token);
+    public void deleteById(String token);
 }

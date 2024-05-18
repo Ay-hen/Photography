@@ -121,6 +121,7 @@ public class AuthenticationService {
         user.setToken(tk);
     
         tokenRepo.save(tk);
+        repo.save(user);
     
         return AuthenticationResponse.builder()
                 .token(jwtToken)
@@ -131,23 +132,33 @@ public class AuthenticationService {
 
     /* ******************************* Logout ******************************* */
     public ResponseEntity<?> logout(String username) {
-        
-            var user = repo.findByUsername(username).orElseThrow();
-            // Remove the token from the repository
-            Token token = user.getToken();
-            if (token != null) {
-                tokenRepo.delete(token);
-            }
+        var user = repo.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+    
+        if (user.getToken() != null) {
+            // Fetch the token document from the token repository
+            var tokenId = user.getToken().getToken();
+            var token = tokenRepo.findById(tokenId).orElseThrow(() -> new RuntimeException("Token not found"));
 
-            if("photographer".equals(user.getRole())){
-                user.setAvailability("Not Available");
-            }
-        
+            
+            // Delete the token from the repository
+            tokenRepo.delete(token);
+    
             // Set user's token to null
             user.setToken(null);
-        
-
-        return ResponseEntity.ok("Logged out successfully");
+    
+            if ("photographer".equals(user.getRole())) {
+                user.setAvailability("Not Available");
+            }
+    
+            // Save the user
+            repo.save(user);
+    
+            return ResponseEntity.ok("Logged out successfully");
+        } else {
+            System.out.println("No token found for user: " + user.getUsername());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No token found for user");
+        }
     }
+    
 
 }

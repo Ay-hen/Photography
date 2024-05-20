@@ -31,6 +31,7 @@ public class User implements UserDetails {
     private String city;
     private String availability;
     private String price;
+    private Boolean suspended;
 
     @JsonIgnore
     private String password;

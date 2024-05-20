@@ -32,7 +32,7 @@ public class UserService {
             return ResponseEntity.badRequest().body("No users found in the city");
         }else{
             List<Map<String, String>> photographerNames = users.stream()
-                .filter(user -> "photographer".equals(user.getRole()))
+                .filter(user -> "photographer".equals(user.getRole()) && !user.getSuspended())
                 .map(user -> {
                     Map<String, String> nameMap = new HashMap<>();
                     nameMap.put("name", user.getName());
@@ -112,4 +112,46 @@ public class UserService {
         userRepo.save(photographer);
         return ResponseEntity.ok("Done");
     }
+
+    public ResponseEntity<?> getAllReservations(){
+        return ResponseEntity.ok(reservationRepo.findAll());
+    }
+
+    public ResponseEntity<?> getAllUsers(){
+        return ResponseEntity.ok(userRepo.findAll());
+    }
+
+    public void deleteUser(String username){
+        userRepo.delete(userRepo.findByUsername(username).get());
+    }
+
+    public ResponseEntity<?> suspendUser(String username){
+        User user = userRepo.findByUsername(username).get();
+        user.setSuspended(true);
+        userRepo.save(user);
+        return ResponseEntity.ok().body(Map.of("message", "Ok"));
+    }
+
+    public ResponseEntity<?> unsuspendUser(String username){
+        User user = userRepo.findByUsername(username).get();
+        user.setSuspended(false);
+        userRepo.save(user);
+        return ResponseEntity.ok().body(Map.of("message", "Ok"));
+    }
+
+    public ResponseEntity<?> getAllPhotographers(){
+        List <User> users = userRepo.findByRole("photographer");
+        return ResponseEntity.ok(users);
+    }
+
+    public ResponseEntity<?> getAllClients(){
+        List <User> users = userRepo.findByRole("client");
+        return ResponseEntity.ok(users);
+    }
+    public ResponseEntity<?> getAllSuspended(){
+        List <User> users = userRepo.findBySuspended(true);
+        return ResponseEntity.ok(users);
+    }
+
+
 }

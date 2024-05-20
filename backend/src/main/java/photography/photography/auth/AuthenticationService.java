@@ -56,6 +56,7 @@ public class AuthenticationService {
                     .password(passwordEncoder.encode(request.getPassword()))
                     .availability("Available")
                     .price("100 DH/Hour")
+                    .suspended(false)
                     .role(request.getRole())
                     .city(request.getCity())
                     .build();
@@ -82,7 +83,7 @@ public class AuthenticationService {
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                
+                .suspended(false)
                 .role(request.getRole())
                 .build();
 
@@ -112,6 +113,11 @@ public class AuthenticationService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         var user = repo.findByUsername(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     
+        System.out.println(user);
+        if(user.getSuspended()){
+            System.out.println(user);
+            throw new RuntimeException("User is suspended");
+        }else{
         var jwtToken = jwtService.generateToken(user);
     
         Token tk = Token.builder()
@@ -128,6 +134,7 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .role(user.getRole())
                 .build();
+        }
         
     }
 

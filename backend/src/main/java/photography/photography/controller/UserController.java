@@ -49,6 +49,34 @@ public class UserController {
         return userService.getReservations(username);
     }
 
+    @GetMapping("/reservations/all")
+    public ResponseEntity<?> getAllReservations(){
+        return userService.getAllReservations();
+    }
+
+    @GetMapping("/clients/all")
+    public ResponseEntity<?> getAllUsers(){
+        return userService.getAllClients();
+    }
+    @GetMapping("/photographers/all")
+    public ResponseEntity<?> getAllPhotographers(){
+        return userService.getAllPhotographers();
+    }
+    @GetMapping("/suspended/all")
+    public ResponseEntity<?> getAllSuspended(){
+        return userService.getAllSuspended();
+    }
+
+    @GetMapping("/suspension/{username}")
+    public ResponseEntity<?> suspendUser(@PathVariable String username){
+        return userService.suspendUser(username);
+    }
+
+    @GetMapping("/unsuspension/{username}")
+    public ResponseEntity<?> unsuspendUser(@PathVariable String username){
+        return userService.unsuspendUser(username);
+    }
+
     @PostMapping("/create/reservation")
     public ResponseEntity<?> createReservation(
             @RequestParam("username") String username,@RequestParam("phone") String phone,
@@ -102,5 +130,11 @@ public class UserController {
         userService.deleteReservation(id);
     }
 
+    @DeleteMapping("/delete/user/{username}")
+    public void deleteUser(@PathVariable String username){
+        userService.deleteUser(username);
+    }
+
+    
 
 }

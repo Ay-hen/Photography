@@ -11,8 +11,11 @@ public interface UserRepo extends MongoRepository<User, String>{
     public List<User> findByCity(String city);
     public Optional <User> findByUsername(String username);
 
+    List<User> findByRole(String role);
+
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 
     List<User> findByCityAndRole(String city, String role);
+    List<User> findBySuspended(boolean suspended);
 }

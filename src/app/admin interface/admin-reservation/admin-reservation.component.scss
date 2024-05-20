@@ -73,6 +73,23 @@ span.date{
     background-color: #ff0000;
 }
 
+.status{
+    text-align: center;
+    h1.accepted{
+        color: green;
+        font-size: 1.8rem;
+    }
+    h1.rejected{
+        color: red;
+        font-size: 1.8rem;
+    }
+
+    h1.pending{
+        color: gray;
+        font-size: 1.8rem;
+    }
+}
+
 @media (min-width: 600px) {
     .cart-container {
         grid-template-columns: repeat(2, 1fr);
@@ -89,3 +106,19 @@ span.date{
         margin-left: 4rem;
     }
 }
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 68rem;
+    font-family: Arial, sans-serif; 
+    margin-top: 8rem;
+    padding: 20px; 
+}
+
+.empty h1 {
+    text-align: center; 
+    font-size: 2em; 
+}
+

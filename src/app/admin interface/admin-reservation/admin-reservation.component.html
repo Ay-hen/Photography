@@ -1,15 +1,31 @@
 <app-navbar-ad></app-navbar-ad>
 <div class="container">
     <div class="cart-container ">
-        
-        <div class="cart">
-            <span class="name">client.name</span>
-            <span class="name">reservation.photo</span>
-            <span class="type">reservation.type</span>
-            <span class="date">reservation.date</span>
-            <span class="phone">reservation.phone</span>
-            <button class="accept" (click) = "onAccept()">Accept</button> <button class="reject" (click) = 'onReject()'>Reject</button>
-        </div>
-        
+        @for(reservation of reservations ; track reservation.id){
+            <div class="cart">
+
+                <span class="name">{{reservation.name}}</span>
+                <span class="name">{{reservation.photographerName}}</span>
+                <span class="type">{{reservation.type}}</span>
+                <span class="date">{{reservation.date}}</span>
+                <span class="phone">{{reservation.phone}}</span>
+
+                <div class="status">
+                    @if(reservation.status === "Rejected"){
+                        <h1 class="rejected">{{reservation.status}}</h1>
+                    }@else if(reservation.status === "Accepted"){
+                        <h1 class="accepted">{{reservation.status}}</h1>
+                    }@else{
+                        <h1 class="pending">Pending</h1>
+                    } 
+                </div>
+
+            </div>
+        }@empty {
+            <div class="empty">
+                <h1>No Reservations Yet !</h1>
+            </div>
+        }
+
     </div>
 </div>

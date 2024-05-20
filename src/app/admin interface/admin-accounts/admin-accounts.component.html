@@ -1,50 +1,118 @@
 <app-navbar-ad></app-navbar-ad>
 <div class="container">
     <div class="cart-container ">
+        
+        
         <span class="sidebar">List of clients</span>
-
         <div class="carts">
-            <div class="cart-info">
-                <span class="name">client.name</span>
-                <span class="type">client.phone</span>
-                <span class="date">client.email</span>
-                <div class="button-container">
-                    <button class="accept" (click)="onSuspension()">Suspension</button>
-                    <button class="reject" (click)='onDelete()'>Delete</button>
+        @for(user of clients; track user.username){
+            @if( !user.suspended){
+
+                    <div class="cart-info">
+                        <span class="name">{{user.username}}</span>
+                        <span class="type">{{user.name}}</span>
+                        <span class="date">{{user.email}}</span>
+                        <div class="button-container">
+                            <button class="accept" (click)="onSuspension(user.username)">Suspension</button>
+                            <button class="reject" (click)='onDelete(user.username)'>Delete</button>
+                        </div>
+                    </div>
+                }
+            }@empty {
+                <div class="empty">
+                    <h1>There is no Clients yet !</h1>
                 </div>
-            </div>
-            <div class="cart-info">
-                <span class="name">client.name</span>
-                <span class="type">client.phone</span>
-                <span class="date">client.email</span>
-                <div class="button-container">
-                    <button class="accept" (click)="onSuspension()">Suspension</button>
-                    <button class="reject" (click)='onDelete()'>Delete</button>
-                </div>
-            </div>
-            <div class="cart-info">
-                <span class="name">client.name</span>
-                <span class="type">client.phone</span>
-                <span class="date">client.email</span>
-                <div class="button-container">
-                    <button class="accept" (click)="onSuspension()">Suspension</button>
-                    <button class="reject" (click)='onDelete()'>Delete</button>
-                </div>
-            </div>
+            }
         </div>
+        
+            <!-- @else if(user.role === "photographer" && user.suspended) {
+                <div class="cart-container ">
+                    <span class="sidebar">List of photographers</span>
+                    <div class="carts">
+                        <div class="cart-info">
+                            <span class="name">{{user.name}}</span>
+                            <span class="type">{{user.phone}}</span>
+                            <span class="date">{{user.email}}</span>
+                            <div class="button-container">
+                                <button class="accept" (click)="onSuspension(user.username)">Suspension</button>
+                                <button class="reject" (click)='onDelete(user.username)'>Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }@else {
+                <div class="cart-container ">
+                    <span class="sidebar">List of suspended Users</span>
+                    <div class="carts">
+                        <div class="cart-info">
+                            <span class="name">{{user.name}}</span>
+                            <span class="type">{{user.phone}}</span>
+                            <span class="date">{{user.email}}</span>
+                            <div class="button-container">
+                                <button class="accept" (click)="onUnsuspension(user.username)">Suspension</button>
+                                <button class="reject" (click)='onDelete(user.username)'>Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            } -->
+
+            
+            
+    
+        
+        
     </div>
+    
     <div class="cart-container ">
+        
+        
         <span class="sidebar">List of photographers</span>
         <div class="carts">
-            <div class="cart-info">
-                <span class="name">photographer.name</span>
-                <span class="type">photographer.phone</span>
-                <span class="date">photographer.email</span>
-                <div class="button-container">
-                    <button class="accept" (click)="onSuspension()">Suspension</button>
-                    <button class="reject" (click)='onDelete()'>Delete</button>
+        @for(user of photographers; track user.username){
+            @if(!user.suspended){
+
+                <div class="cart-info">
+                    <span class="name">{{user.name}}</span>
+                    <span class="type">{{user.phone}}</span>
+                    <span class="date">{{user.email}}</span>
+                    <div class="button-container">
+                        <button class="accept" (click)="onUnsuspension(user.username)">Suspension</button>
+                        <button class="reject" (click)='onDelete(user.username)'>Delete</button>
+                    </div>
                 </div>
-            </div>
+                }
+            }@empty {
+                <div class="empty">
+                    <h1>There is no Photographers yet !</h1>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="cart-container clr ">
+        
+        
+        <span class="sidebar">List of suspended Users</span>
+        <div class="carts">
+        @for(user of users; track user.username){
+            
+
+                <div class="cart-info">
+                    <span class="name">{{user.username}}</span>
+                    <span class="type">{{user.name}}</span>
+                    <span class="date">{{user.email}}</span>
+                    <div class="button-container">
+                        <button class="accept" (click)="onUnsuspension(user.username)">Unsuspend</button>
+                        <button class="reject" (click)='onDelete(user.username)'>Delete</button>
+                    </div>
+                </div>
+                
+            }@empty {
+                <div class="empty">
+                    <h1>There is no users suspended </h1>
+                </div>
+            }
         </div>
     </div>
 </div>

@@ -1,14 +1,19 @@
 <app-navbar-photographer></app-navbar-photographer>
 <div class="container">
     <div class="cart-container ">
-        
-        <div class="cart">
-            <span class="name">client.name</span>
-            <span class="type">reservation.type</span>
-            <span class="date">reservation.date</span>
-            <span class="phone">reservation.phone</span>
-            <button class="accept">Accept</button> <button class="reject">Reject</button>
-        </div>
-        
+        @for(reservation of reservations; track reservation.id){
+            <div class="cart">
+                <span class="name">{{reservation.name}}</span>
+                <span class="type">{{reservation.type}}</span>
+                <span class="date">{{reservation.date}}</span>
+                <span class="phone">{{reservation.phone}}</span>
+                <button class="accept" (click) = "accept(reservation.id)">Accept</button> <button class="reject" (click) ="rejected(reservation.id)">reject</button>
+            </div>
+        }@empty {
+            <div class="empty">
+                <h1>No Reservations Yet !</h1>
+            </div>
+        }
+
     </div>
 </div>

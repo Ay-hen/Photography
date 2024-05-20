@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NavbarComponent } from '../../Components/navbar/navbar.component';
 import { RouterLink } from '@angular/router';
-import { Reservation } from '../../app.component.models';
 import { ReservationCartComponent } from "./reservation-cart/reservation-cart.component";
+import { AuthService } from '../../services/auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'app-reservation',
@@ -11,44 +12,36 @@ import { ReservationCartComponent } from "./reservation-cart/reservation-cart.co
     styleUrl: './reservation.component.scss',
     imports: [NavbarComponent, RouterLink, ReservationCartComponent]
 })
-export class ReservationComponent {
-  reservations :Reservation[]=[
-    {
-      id:1,
-      username : 'John Doe',
-      date : '05/05/2024',
-      status : 'Pending',
-      type : 'Marriage'
-    },
-    {
-      id:2,
-      username : 'Kaizo',
-      date : '06/05/2024',
-      status : 'Accepted',
-      type : 'Montage'
-    },
+export class ReservationComponent implements OnInit{
+  reservations :any=[];
+
+  authService = inject(AuthService);
+  jwtToken = localStorage.getItem('token');
+  httpClient = inject(HttpClient);
+
+  ngOnInit():void{
+    const username = this.authService.getUsernameFromToken();
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`
+    });
     
-    {
-      id:4,
-      username : 'Kabjbizo',
-      date : '06/05/2024',
-      status : 'Accepted',
-      type : 'Montaghhe'
-    },
-    {
-      id:6,
-      username : 'Kabjbizo',
-      date : '06/05/2024',
-      status : 'Accepted',
-      type : 'Montaghhe'
-    },
-    {
-      id:3,
-      username : 'Ayoub',
-      date : '04/05/2024',
-      status : 'Rejected',
-      type : 'Party'
-    }
-  ];
+    this.httpClient.get(`http://localhost:8080/user/reservations/${username}`, { headers })
+      .subscribe(
+        reservations => {
+          this.reservations = reservations;
+          console.error('Reservations : ', reservations);
+        },
+        error => {
+          this.reservations = [];
+        }
+      );
+
+  }
+
+  onReservationDeleted(message:string): void {
+    alert("Reservation deleted successfully!");
+    window.location.reload();
+  }
 
 }

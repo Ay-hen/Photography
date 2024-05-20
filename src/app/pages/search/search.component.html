@@ -2,63 +2,30 @@
 
 <div class="container">
     <div class="search">
-        <input type="text" class="search-input" placeholder="Search for a photographer in your city" />
-        <button class="search-btn">Search</button>
+        <input type="text" class="search-input" placeholder="Search for a photographer in your city" #cityInput/>
+        <button class="search-btn" (click) = "search(cityInput.value)">Search</button>
     </div>
     <div class="results">
         <div class="cart">
-            <div class="cart-info">
-                <h3 class="cart-name">John Doe</h3>
-                <p class="cart-city">New York</p>
-                <p class="cart-price">$50/hour</p>
-                <!-- @if(photograph.availability == "available"){
-                    <p class="available">Available</p>
-                }@else{
-                    <p class="not-available">Not Available</p>
-                } 
-                -->
+            @for (photographer of photographers; track photographer.username) {
+                <div class="cart-info">
+                    <h3 class="cart-name">{{photographer.name}}</h3>
+                    <p class="cart-city">{{photographer.city}}</p>
+                    <p class="cart-price">$ {{photographer.price}}</p>
+                    @if(photographer.availability.toLowerCase() == "available"){
+                        <p class="available">Available</p>
+                    }@else{
+                        <p class="not-available">Not Available</p>
+                    } 
+                </div>
+            }@empty {
+                <div class="text">
+                    <h1>
+                        {{text}}
+                    </h1>
+                </div>
+            }
             
-                <p class="available">Available</p>
-            </div>
-            <div class="cart-info">
-                <h3 class="cart-name">John Doe</h3>
-                <p class="cart-city">New York</p>
-                <p class="cart-price">$50/hour</p>
-                <!-- @if(photograph.availability == "available"){
-                    <p class="available">Available</p>
-                }@else{
-                    <p class="not-available">Not Available</p>
-                } 
-                -->
-            
-                <p class="available">Available</p>
-            </div>
-            <div class="cart-info">
-                <h3 class="cart-name">John Doe</h3>
-                <p class="cart-city">New York</p>
-                <p class="cart-price">$50/hour</p>
-                <!-- @if(photograph.availability == "available"){
-                    <p class="available">Available</p>
-                }@else{
-                    <p class="not-available">Not Available</p>
-                } 
-                -->
-            
-                <p class="available">Available</p>
-            </div>
-            <div class="cart-info">
-                <h3 class="cart-name">John Doe</h3>
-                <p class="cart-city">New York</p>
-                <p class="cart-price">$50/hour</p>
-                <!-- @if(photograph.availability == "available"){
-                    <p class="available">Available</p>
-                }@else{
-                    <p class="not-available">Not Available</p>
-                } 
-                -->
-            
-                <p class="available">Available</p>
-            </div>
         </div>
         
     </div>

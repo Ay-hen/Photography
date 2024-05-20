@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Reservation } from '../../../app.component.models';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,17 +10,25 @@ import { Reservation } from '../../../app.component.models';
   styleUrl: './reservation-cart.component.scss'
 })
 export class ReservationCartComponent {
-  @Input() reservation !:Reservation;
+  @Input() reservation !:any;
+  @Output() reservationDeleted = new EventEmitter<string>();
 
-  //constructor(private http: HttpClient) { }
+  http = inject(HttpClient);
+  
+  jwtToken = localStorage.getItem('token');
 
-  /*delete() {
-    this.http.delete(`api/reservations/${this.reservation.id}`).subscribe(() => {
-      console.log('Reservation deleted');
+  delete(id : string){
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.jwtToken}`
     });
-  }*/
-
-  delete(){
-
+    this.http.delete(`http://localhost:8080/user/delete/reservation/${id}`, {headers}).subscribe(
+      () => {
+        this.reservationDeleted.emit("deleted");
+      },
+      error => {
+        console.error('Error deleting reservation:', error);
+        // Handle the error here
+      }
+    );
   }
 }

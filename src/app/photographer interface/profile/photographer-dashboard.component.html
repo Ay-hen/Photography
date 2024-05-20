@@ -12,28 +12,28 @@
             @if (editAll) {
                 <div class="name">
                     <label>Full Name</label>
-                    <input type="text" [readonly]="!editAll"/>
+                    <input type="text" formControlName="name" [readonly]="!editAll"/>
                 </div>
                 <div class="phone">
                     <label>Phone Number</label>
-                    <input type="text" [readonly]="!editAll"/>
+                    <input type="text" maxlength="10" formControlName="phone" [readonly]="!editAll"/>
                 </div>
                 <div class="city">
                     <label>City</label>
-                    <input type="text" [readonly]="!editAll"/>
-                </div>
-                <div class="email">
-                    <label>Email</label>
-                    <input type="text" [readonly]="!editAll"/>
+                    <input type="text" formControlName="city" [readonly]="!editAll"/>
                 </div>
             }
-            
+            <div class="price">
+                <label>Price</label>
+                <input type="text" formControlName="price" />
+            </div>
+
             <div class="availability" >
                 <label>Availability</label>
-                <select name="availability">
+                <select formControlName="availability">
                     <option value="" disabled selected>Select an option</option>
                     <option value="available">Available</option>
-                    <option value="not-available">Not Available</option>
+                    <option value="not available">Not Available</option>
                 </select>
             </div>
             <div class="btn">

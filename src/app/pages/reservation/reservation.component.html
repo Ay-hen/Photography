@@ -3,7 +3,7 @@
     <div class="center">
         <div class="container">
             @for( reservation of reservations; track reservation.id){
-                <app-reservation-cart [reservation] = "reservation" ></app-reservation-cart>
+                <app-reservation-cart [reservation]="reservation" (reservationDeleted)="onReservationDeleted($event)"></app-reservation-cart>
             }
             
             @empty {

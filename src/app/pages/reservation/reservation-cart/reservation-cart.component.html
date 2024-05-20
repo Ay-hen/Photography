@@ -1,9 +1,12 @@
 <div class="container">
     <div class="username">
-        <h2>{{reservation.username}}</h2>
+        <h2>{{reservation.photographerName}}</h2>
     </div>
     <div class="type">
         <h1>{{reservation.type}}</h1>
+    </div>
+    <div class="city">
+        <h2>{{reservation.city}}</h2>
     </div>
     <div class="status">
         @if(reservation.status === "Rejected"){
@@ -17,7 +20,8 @@
     <div class="date">
         <h2>{{reservation.date}}</h2>
     </div>
+    
     <div class="delete">
-        <button (click)="delete()">Delete</button>
+        <button (click)="delete(reservation.id)">Delete</button>
     </div>
 </div>

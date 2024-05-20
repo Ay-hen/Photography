@@ -38,7 +38,10 @@ export class SignupComponentPhotographer {
       return;
     }
   
-    const { name, username, email, city, phone, password  } = this.userForm.value;
+    let { name, username, email, city, phone, password  } = this.userForm.value;
+
+
+    city = city.toLowerCase();
   
     this.authService.registerPhotographer(name, username, email, city, phone, password).subscribe(
       (response) => {

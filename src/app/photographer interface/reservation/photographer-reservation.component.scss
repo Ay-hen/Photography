@@ -27,6 +27,7 @@
     display: block;
     margin-bottom: 10px;
     text-align: center;
+    font-size : 1.19rem;
 }
 
 span.name{
@@ -42,7 +43,7 @@ span.type{
 }
 
 span.date{
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .cart button {
@@ -88,4 +89,19 @@ span.date{
         gap: 60px;
         margin-left: 4rem;
     }
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 68rem;
+    font-family: Arial, sans-serif; 
+    margin-top: 8rem;
+    padding: 20px; 
+}
+
+.empty h1 {
+    text-align: center; 
+    font-size: 2.5em; 
 }

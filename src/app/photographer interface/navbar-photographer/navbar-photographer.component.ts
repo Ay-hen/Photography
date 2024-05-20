@@ -14,7 +14,7 @@ export class NavbarPhotographerComponent {
   authService = inject(AuthService);
 
   logout(){
-    
-    this.authService.logout();
+    const username = this.authService.getUsernameFromToken();
+    this.authService.logout(username);
   }
 }

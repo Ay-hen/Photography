@@ -8,16 +8,13 @@
         </div>
         <div class="phone">
             <label for="name">Phone Number</label>
-            <input type="text" formControlName="phone" #phone placeholder="+212">
+            <input type="text" formControlName="phone" #phone maxlength="10">
         </div>
         <div class="city">
             <label for="city">City</label>
             <input type="text" formControlName="city" (blur) = "onBlurMethod($event)"  #city required>
         </div>
-        <div class="hour">
-            <label for="hour">Hour</label>
-            <input type="text" formControlName="hour" #hour placeholder="hh : mm">
-        </div>
+
         <div class="date">
             <label for="date">Date</label>
             <input type="date" formControlName="date" #date>
@@ -38,7 +35,7 @@
                 <option value="" disabled selected>Select an option</option>
 
             @for (photographer of photographers; track photographer.username) {
-                <option [value]="photographer.name">{{photographer.name}}</option>
+                <option [value]="photographer.username">{{photographer.name}}</option>
             }@empty {
                 @if(city.value==""){
                     <option value="empty" disabled>Write your city's name</option>

@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, catchError,filter,map,tap, throwError } fr
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavigationEnd, Router } from '@angular/router';
 import  {jwtDecode} from 'jwt-decode';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class AuthService {
 
   private previousUrl: string = '';
   private currentUrl: string;
+
+  updateSubject = new Subject<void>();
 
   private router = inject(Router);
 
@@ -30,6 +33,10 @@ export class AuthService {
       this.previousUrl = this.currentUrl;
       this.currentUrl = event.urlAfterRedirects;
     });
+  }
+
+  notifyUpdate() {
+    this.updateSubject.next();
   }
 
   /* ************************************************************************************************** */
@@ -170,15 +177,28 @@ export class AuthService {
   }
 
   /* ************************************************************************************************** */
-  logout(){
+  logout(username:string){
+
+    
+    const formData = new FormData();
+    formData.append('username', username);
+
+    console.log("username : ", username);
+
+    const user = { username };
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    const username = this.getUsernameFromToken();
-    this.http.post(`http://localhost:8080/user/auth/logout`,username,httpOptions);
+    
+    
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    if(username !=''){
+      this.http.post('http://localhost:8080/user/auth/logout',user,httpOptions).subscribe(response => {
+        console.log(response);
+      });
+    }
     this.isAuthenticatedSubject.next(false);
     this.userRoleSubject.next(null);
     this.router.navigate(['/login']);

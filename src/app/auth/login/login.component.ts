@@ -52,7 +52,25 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.authService.logout();
+    if(this.authService.isLoggedIn()){
+      const role = this.authService.getRole();
+      switch(role) {
+        case 'client':
+          // Handle client case
+          this.router.navigate(['/home']);
+          break;
+        case 'admin':
+          // Handle admin case
+          this.router.navigate(['/admin/accounts']);
+          break;
+        case 'photographer':
+          // Handle photographer case
+          this.router.navigate(['/profile']);
+          break;
+        default:          
+          this.router.navigate(['/unauthorized']);
+      }
+    }
     
   }
 }

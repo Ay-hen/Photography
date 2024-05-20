@@ -69,3 +69,18 @@
     color: red;
     font-weight: 600;
 }
+
+.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:55rem;
+    margin-top:5rem;
+    font-family: Arial, sans-serif;
+    padding: 20px; 
+}
+
+.text h1 {
+    text-align: center; /* Center the text */
+    font-size: 2em; /* Make the text larger */
+}

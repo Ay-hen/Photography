@@ -56,4 +56,60 @@ public class UserService {
     public User getUser(String username){
         return userRepo.findByUsername(username).get();
     }
+
+    public ResponseEntity<?> getReservations(String username){
+        List<Reservation> reservations = userRepo.findByUsername(username).get().getReservations();
+        if(reservations.isEmpty()){
+            return ResponseEntity.badRequest().body("No reservations found");
+        }else{
+            return ResponseEntity.ok(reservations);
+        }
+    }
+
+    public void deleteReservation(String id){
+        Reservation reservation = reservationRepo.findById(id).get();
+        User user = reservation.getUser();
+        User photographer = reservationRepo.findById(id).get().getPhotographer();
+
+        user.removeReservation(reservation);
+        photographer.removeReservation(reservation);
+
+        userRepo.save(user);
+        userRepo.save(photographer);
+
+        reservationRepo.deleteById(id);
+    }
+
+    public ResponseEntity<?> getPhotographerByCity(String city){
+        List<User> users = userRepo.findByCityAndRole(city, "photographer");
+        if(users.isEmpty()){
+            return ResponseEntity.badRequest().body("No photographers found in the city");
+        }else{
+            return ResponseEntity.ok(users);
+        }
+    }
+
+    public ResponseEntity<?> editPhotographer(String username,String name, String city, String phone, String availability, String price){
+        User user = userRepo.findByUsername(username).get();
+        user.setAvailability(availability);
+        user.setPrice(price);
+
+        if(!city.equals("") && !name.equals("") && !phone.equals("")){
+            user.setCity(city);
+            user.setName(name);
+            user.setPhone(phone);
+        }
+        userRepo.save(user);
+        return ResponseEntity.ok().body(Map.of("message", "Ok"));
+    }
+
+    public ResponseEntity<?> setStatus(String id, String status){
+        Reservation reservation = reservationRepo.findById(id).get();
+        reservation.setStatus(status);
+        reservationRepo.save(reservation);
+        User photographer = reservation.getPhotographer();
+        photographer.removeReservation(reservation);
+        userRepo.save(photographer);
+        return ResponseEntity.ok("Done");
+    }
 }

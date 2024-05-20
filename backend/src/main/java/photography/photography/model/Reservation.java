@@ -15,13 +15,17 @@ import lombok.NoArgsConstructor;
 public class Reservation {
     @Id
     private String id;
-    private String photographer;
+    private String name;
     private String status;
     private String date;
     private String type;
     private String city;
-    private String hour;
+    private String photographerName;
+    private String phone;
     
     @DBRef
     private User user;
+
+    @DBRef
+    private User photographer;
 }

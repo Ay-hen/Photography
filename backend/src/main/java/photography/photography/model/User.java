@@ -30,6 +30,7 @@ public class User implements UserDetails {
     private String role;
     private String city;
     private String availability;
+    private String price;
 
     @JsonIgnore
     private String password;
@@ -44,6 +45,14 @@ public class User implements UserDetails {
 
     public User(){
         this.reservations = new ArrayList<>();
+    }
+
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+    }
+
+    public void removeReservation(Reservation reservation){
+        this.reservations.remove(reservation);
     }
 
     public Object orElseThrow(Object object) {

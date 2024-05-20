@@ -55,6 +55,7 @@ public class AuthenticationService {
                     .email(request.getEmail())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .availability("Available")
+                    .price("100 DH/Hour")
                     .role(request.getRole())
                     .city(request.getCity())
                     .build();

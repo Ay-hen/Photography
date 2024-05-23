@@ -27,7 +27,6 @@ export class CartComponent {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id); // logs the id parameter from the route
   }
 }
 

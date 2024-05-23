@@ -24,8 +24,8 @@ export class SignupComponent {
 
   constructor(){
     this.userForm = new FormGroup({
-      name: new FormControl("",[Validators.required,Validators.minLength(4),Validators.maxLength(25)]),
-      username: new FormControl("",[Validators.required,Validators.minLength(4)]),
+      name: new FormControl("",[Validators.required]),
+      username: new FormControl("",[Validators.required]),
       email: new FormControl("",[Validators.required,Validators.email]),
       password: new FormControl("",[Validators.required])
     });
@@ -36,12 +36,14 @@ export class SignupComponent {
     return;
   }
 
-  const { name, username, email, password } = this.userForm.value;
+  let  { name, username, email, password } = this.userForm.value;
+
+  username = username.toLowerCase();
+  email = email.toLowerCase();
 
   this.authService.registerUser(name, username, email, password).subscribe(
     (response) => {
       console.log(response);
-      
     },
     (error) => {
       this.error = true;

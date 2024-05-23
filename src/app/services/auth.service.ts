@@ -57,7 +57,6 @@ export class AuthService {
           localStorage.setItem('role', role);
           this.isAuthenticatedSubject.next(true);
           this.userRoleSubject.next(role);
-          console.log(`the ROLE is ${role}`)
           // Redirect based on role (optional)
           if (role === "client") {
             this.router.navigate(['home']);

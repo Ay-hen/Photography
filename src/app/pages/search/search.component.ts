@@ -26,8 +26,6 @@ export class SearchComponent implements OnInit{
   search(city: string){
     city = city.toLowerCase();
 
-    console.log(city);
-
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.jwtToken}`
     });

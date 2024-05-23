@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit{
       return;
     }else{
       
-      this.authService.login(this.userForm.value.username,this.userForm.value.password).subscribe(
+      this.authService.login(this.userForm.value.username.toLowerCase(),this.userForm.value.password).subscribe(
         (response) => {
           
         },

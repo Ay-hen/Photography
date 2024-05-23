@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    console.log(this.authService.getUsernameFromToken());
+    
   }
 
   carts: Cart[] = [

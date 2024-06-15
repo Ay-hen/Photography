@@ -1,12 +1,27 @@
 <div class="cart">
-    <div class="image">
-        <img src="{{cart.image}}" alt="{{cart.title}}">
-    </div>
-    <div class="details">
-        <h3>{{cart.title}}</h3>
-        <p>{{cart.description}}</p>
-    </div>
-    <div class="button">
-        <button (click)="seeMore()">Add Reservation</button>
-    </div>
+    <!-- Skeleton -->
+    @if(isLoading){
+        <div class="image skeleton skeleton-img"></div>
+        <div class="details">
+            <h3 class="skeleton skeleton-text h3"></h3>
+            <p class="skeleton skeleton-text p"></p>
+        </div>
+        <div class="button">
+            <div class="skeleton skeleton-text" style="width: 120px; height: 40px;"></div>
+        </div>
+    }
+
+    <!-- Actual Content -->
+    @if(!isLoading){
+        <div class="image">
+            <img src="{{cart.image}}" alt="{{cart.title}}">
+        </div>
+        <div class="details">
+            <h3>{{cart.title}}</h3>
+            <p>{{cart.description}}</p>
+        </div>
+        <div class="button">
+            <button (click)="seeMore()">Add Reservation</button>
+        </div>
+    }
 </div>

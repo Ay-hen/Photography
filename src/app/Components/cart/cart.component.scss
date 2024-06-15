@@ -1,48 +1,114 @@
-
-
 .cart {
-    background-color: white;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25rem; /* adjust as needed */
-    height: 20.8rem;
+    width: 18rem;
+    min-height: 15rem;
     padding: 20px;
     border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* optional: add a shadow for a "card" effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    margin: 20px; 
 }
 
-.image img {
+.cart:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.cart .image {
+    width: 300px;
+    height: 180px; 
     display: flex;
     justify-content: center;
-    width: 20rem;
-    height: 14rem; // Set the height as per your requirement
+    align-items: center;
+    
     overflow: hidden;
-    border-radius: 0.7rem;
+
+    img {
+        max-width: 300px;
+        max-height: 100%;
+        object-fit: cover;
+        border-radius: 0.7rem;
+    }
 }
 
-.details h3, .details p {
+.cart .details {
     text-align: center;
-    margin: 5px ; /* add some space above and below the text */
+    margin-top: 10px;
 }
 
-.button button {    
+.cart .details h3 {
+    margin: 10px 0; 
+    font-size: 1.25rem; 
+    font-weight: 700;
+}
 
-    color: white;
+.cart .details p {
+    margin: 10px 0; 
+    font-size: 1rem;
+    color: #666; 
+}
+
+.cart .button {
+    margin-top: 20px; 
+}
+
+.cart .button button {
+    color: #fff;
     background-color: #007bff;
     border: none;
     font-weight: 700;
-    padding: 10px 18px;
+    padding: 12px 20px; 
     border-radius: 8px;
     cursor: pointer;
-    transition: ease-in-out 0.3s;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.button button:hover {
+.cart .button button:hover {
+    background-color: #0056b3;
+}
 
-    color: white;
-    background-color: #004FFF;
-    padding: 10px 18px;
-    border-radius: 8px;
-    transition: ease-in-out 0.3s;
+.skeleton {
+    background-color: #eee;
+    border-radius: 4px;
+    animation: loading 1.5s infinite;
+}
+
+.skeleton-text {
+    width: 2rem;
+    height: 16px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skeleton-text.h3 {
+    width: 90px;
+    height: 25px;
+    
+    text-align: center; /* Align text to the center */
+}
+
+.skeleton-text.p {
+    width: 120px;
+    height: 16px;
+    margin: 10px auto;
+}
+
+.skeleton-img {
+    width: 300px;
+    height: 180px; 
+    border-radius: 0.7rem; 
+    margin-top: 20px;
+}
+
+@keyframes loading {
+    0%, 100% {
+        background-color: #eee;
+    }
+    50% {
+        background-color: #ddd;
+    }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UnauthorizedComponent } from './unauthorized.component';
+import { SearchingComponent } from './searching.component';
 
-describe('UnauthorizedComponent', () => {
-  let component: UnauthorizedComponent;
-  let fixture: ComponentFixture<UnauthorizedComponent>;
+describe('SearchingComponent', () => {
+  let component: SearchingComponent;
+  let fixture: ComponentFixture<SearchingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UnauthorizedComponent]
+      imports: [SearchingComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UnauthorizedComponent);
+    fixture = TestBed.createComponent(SearchingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

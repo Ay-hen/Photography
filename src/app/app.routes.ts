@@ -13,7 +13,7 @@ import { PhotographerReservationComponent } from './photographer interface/reser
 import { AdminReservationComponent } from './admin interface/admin-reservation/admin-reservation.component';
 import { AdminAccountsComponent } from './admin interface/admin-accounts/admin-accounts.component';
 import { authGuard } from './guard/auth.guard';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+
 
 export const routes: Routes = [
 
@@ -54,7 +54,7 @@ export const routes: Routes = [
         data: { role: 'client' }
     },
     {
-        path : 'search', 
+        path : 'search/:city', 
         component: SearchComponent,
         canActivate : [authGuard],
         data: { role: 'client' }
@@ -65,10 +65,7 @@ export const routes: Routes = [
         canActivate : [authGuard],
         data: { role: 'client' }
     },
-    {
-        path: 'unauthorized',
-        component: UnauthorizedComponent
-    },
+    
     {
         path : "profile",
         component: PhotographerDashboardComponent,

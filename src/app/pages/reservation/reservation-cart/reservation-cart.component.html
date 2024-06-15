@@ -1,27 +1,51 @@
 <div class="container">
-    <div class="username">
-        <h2>{{reservation.photographerName}}</h2>
-    </div>
-    <div class="type">
-        <h1>{{reservation.type}}</h1>
-    </div>
-    <div class="city">
-        <h2>{{reservation.city}}</h2>
-    </div>
-    <div class="status">
-        @if(reservation.status === "Rejected"){
-            <h1 class="rejected">{{reservation.status}}</h1>
-        }@else if(reservation.status === "Accepted"){
-            <h1 class="accepted">{{reservation.status}}</h1>
-        }@else{
-            <h1 class="pending">{{reservation.status}}</h1>
-        } 
-    </div>
-    <div class="date">
-        <h2>{{reservation.date}}</h2>
-    </div>
-    
-    <div class="delete">
-        <button (click)="delete(reservation.id)">Delete</button>
-    </div>
+    <!-- Skeleton -->
+    @if(isLoading) {
+        <div class="username ">
+            <h2 class="skeleton skeleton-text h2"></h2>
+        </div>
+        <div class="type">
+            <h1 class="skeleton skeleton-text h1"></h1>
+        </div>
+        <div class="city">
+            <h2 class="skeleton skeleton-text h2"></h2>
+        </div>
+        <div class="status">
+            <h1 class="skeleton skeleton-text h1"></h1>
+        </div>
+        <div class="date">
+            <h2 class="skeleton skeleton-text h2"></h2>
+        </div>
+        <div class="delete">
+            <div class="skeleton skeleton-button"></div>
+        </div>
+    }
+
+    <!-- Actual Content -->
+    @if(!isLoading) {
+        <div class="username">
+            <h2>{{reservation.photographerName}}</h2>
+        </div>
+        <div class="type">
+            <h1>{{reservation.type}}</h1>
+        </div>
+        <div class="city">
+            <h2>{{reservation.city}}</h2>
+        </div>
+        <div class="status">
+            @if(reservation.status === "Rejected") {
+                <h1 class="rejected">{{reservation.status}}</h1>
+            } @else if(reservation.status === "Accepted") {
+                <h1 class="accepted">{{reservation.status}}</h1>
+            } @else {
+                <h1 class="pending">{{reservation.status}}</h1>
+            } 
+        </div>
+        <div class="date">
+            <h2>{{reservation.date}}</h2>
+        </div>
+        <div class="delete">
+            <button (click)="delete(reservation.id)">Delete</button>
+        </div>
+    }
 </div>

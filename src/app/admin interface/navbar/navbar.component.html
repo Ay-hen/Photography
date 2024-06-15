@@ -4,8 +4,36 @@
     <div class="urls">
         <a routerLink="/admin/accounts" routerLinkActive="active" #home>Accounts</a>
         <a routerLink="/admin/reservations" routerLinkActive="active" #reservation>Reservations</a>
-        <div class="logout">
-            <button (click)="logout()">Logout</button>
+        
         </div>
-    </div>
+        <div class="logout" (click)="toggleSubMenu()" [class.active]="showSubMenu">
+            <img class = "lines" src="../../../assets/icons8-align-justify-96.png">
+            <img class = "profile" src="../../../assets/icons8-account-96.png">
+        </div>
+
+        @if (showSubMenu) {
+        <div class="sub-menu-wrap">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <div class="user-details">
+                        <img src="../../../assets/icons8-account-96.png">
+                        <div class="text-container">
+                            <span>{{user.name}}</span>
+                            <span>{{user.role}}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="others">
+                        <div class="prof">
+                            <img src="../../../assets/icons8-registration-96.png" alt="">
+                            <a routerLink="/profile" routerLinkActive="active" >Profile</a>
+                        </div>
+                        <div class="logout-btn">
+                            <img src="../../../assets/icons8-logout-52.png" alt="">
+                            <a routerLink="/login" routerLinkActive="active" class="out" (click)="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>}
 </div>

@@ -4,11 +4,12 @@ import { NavbarComponent } from '../../Components/navbar/navbar.component';
 import { CartComponent } from '../../Components/cart/cart.component';
 import { Cart} from "../../app.component.models";
 import { AuthService } from '../../services/auth.service';
+import { SearchingComponent } from '../../Components/searching/searching.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink,NavbarComponent,RouterLinkActive,CartComponent],
+  imports: [RouterLink,NavbarComponent,RouterLinkActive,CartComponent,SearchingComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

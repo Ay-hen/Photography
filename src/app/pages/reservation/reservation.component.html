@@ -1,23 +1,41 @@
 <app-navbar></app-navbar>
+
+<app-searching></app-searching>
+
 <div class="coloring">
     <div class="center">
         <div class="container">
-            @for( reservation of reservations; track reservation.id){
-                <app-reservation-cart [reservation]="reservation" (reservationDeleted)="onReservationDeleted($event)"></app-reservation-cart>
-            }
-            
-            @empty {
-                <div class="text">
-                    <h1>
-                        There is no Reservation yet, Please add new reservation
-                    </h1>
+            <!-- Skeleton Loading Start -->
+            @if(loading){
+                <div class="skeleton-container">
+                    @for(skeleton of skeletons;track skeleton.id){}
+                    <div class="skeleton-card" >
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text short"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-text long"></div>
+                    </div>
                 </div>
+                }
+            <!-- Skeleton Loading End -->
+
+            <!-- Actual Content -->
+            @if(!loading){
+                @for( reservation of reservations; track reservation.id){
+                    <app-reservation-cart [reservation]="reservation" (reservationDeleted)="onReservationDeleted($event)"></app-reservation-cart>
+                }
                 
-            }
+                @empty {
+                    <div class="text">
+                        <h1>
+                            There is no Reservation yet, Please add new reservation
+                        </h1>
+                    </div>
+                }}
+            
         </div>
     </div>
     <div class="btn">
         <button class="btn-add" routerLink="/add-reservation">Add Reservation</button>
     </div>
-
 </div>

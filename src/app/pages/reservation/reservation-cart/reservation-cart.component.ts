@@ -14,6 +14,12 @@ export class ReservationCartComponent {
   @Output() reservationDeleted = new EventEmitter<string>();
 
   http = inject(HttpClient);
+  isLoading: boolean = true; 
+  constructor() { 
+    setTimeout(() => {
+      this.isLoading = false; 
+    }, 2000);
+  }
   
   jwtToken = localStorage.getItem('token');
 

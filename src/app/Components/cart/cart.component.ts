@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Router, RouterLink ,ActivatedRoute} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { Cart } from './cart';
 
 @Component({
@@ -7,18 +7,23 @@ import { Cart } from './cart';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  styleUrls: ['./cart.component.scss'] // Corrected typo here from 'styleUrl' to 'styleUrls'
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
+  @Input() cart: Cart = {
+    id: 1,
+    title: 'Marriage',
+    image: '../../../assets/wedding.jpg',
+    description: 'This is the cart page'
+  }; 
 
-  @Input() cart : Cart;
+  isLoading: boolean = true; 
+
   constructor(private router: Router, private route: ActivatedRoute) {
-    this.cart = {
-      id:1,
-      title : 'Marriage',
-      image : '../../../assets/wedding.jpg',
-      description : 'This is the cart page'
-    }
+    
+    setTimeout(() => {
+      this.isLoading = false; 
+    }, 2000); 
   }
 
   seeMore() {
@@ -26,8 +31,8 @@ export class CartComponent {
   }
 
   ngOnInit() {
+    
     const id = this.route.snapshot.paramMap.get('id');
+    
   }
 }
-
-

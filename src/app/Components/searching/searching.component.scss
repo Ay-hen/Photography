@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Ensure the autocomplete list is positioned relative to the container */
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 5px 10px;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 390px; /* Adjust width as needed */
+}
+
+.search-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.search-btn svg {
+    fill: #000000; 
+    width: 40px; /* Adjust the size of the search icon */
+}
+
+.autocomplete-list {
+    position: absolute; /* Position the list absolutely */
+    top: calc(100% + 5px); /* Position it just below the search box */
+    left: 50%; /* Start positioning from the center */
+    transform: translateX(-50%); /* Center align the list */
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+    max-height: 200px;
+    overflow-y: auto;
+    width: 430px; /* Match the width of the search input */
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    background-color: #fff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a shadow for depth */
+}
+
+.autocomplete-list li {
+    padding: 10px; /* Adjust padding */
+    border-bottom: 1px solid #eee; /* Optional: add a separator */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.autocomplete-list li:last-child {
+    border-bottom: none; /* Remove bottom border for the last item */
+}
+
+.autocomplete-list li:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}
